@@ -1,0 +1,23 @@
+{
+  "skill_name": "localize",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Localize the LoginForm.tsx file - extract all the hardcoded strings and make it i18n ready",
+      "expected_output": "LoginForm.tsx should use useTranslation hook, all user-facing strings replaced with t() calls, and a locales/en.json catalog created with hierarchical keys",
+      "files": ["evals/fixtures/react-app/src/components/LoginForm.tsx", "evals/fixtures/react-app/package.json"]
+    },
+    {
+      "id": 1,
+      "prompt": "Make this Flask dashboard view translation-ready. I want all the user-facing strings extracted to a JSON catalog.",
+      "expected_output": "dashboard.py should use a translation function for all user-facing strings, string interpolation should be handled correctly, and a JSON catalog should be created",
+      "files": ["evals/fixtures/python-app/app/views/dashboard.py", "evals/fixtures/python-app/requirements.txt"]
+    },
+    {
+      "id": 2,
+      "prompt": "I need to internationalize this SwiftUI view. Please extract all the hardcoded strings.",
+      "expected_output": "ProfileView.swift should use String(localized:) or NSLocalizedString for all user-facing strings, including section headers, button labels, toggle labels, alert text, and a JSON catalog created",
+      "files": ["evals/fixtures/swift-app/ProfileView.swift"]
+    }
+  ]
+}
