@@ -1,13 +1,13 @@
 ---
-name: auditing-l10n-scope
+name: auditing-i18n-scope
 description: Use when preparing a codebase for localization, beginning an i18n initiative, or assessing the scale of hardcoded copy before string extraction
 ---
 
-# Auditing L10n Scope
+# Auditing I18n Scope
 
 Discover all hardcoded copy in a codebase, detect already-localized strings, and assess the overall scale of localization work.
 
-**Announce at start:** "I'm using the auditing-l10n-scope skill to assess the localization scope of this codebase."
+**Announce at start:** "I'm using the auditing-i18n-scope skill to assess the localization scope of this codebase."
 
 ## When to Use
 
@@ -20,7 +20,7 @@ Discover all hardcoded copy in a codebase, detect already-localized strings, and
 
 ## Process
 
-Follow these phases in order. Write findings to `l10n-audit-report.md` in the repo root. If the file already exists, replace the "Tech Stack & Configuration" and "Scope Assessment" sections while preserving other sections.
+Follow these phases in order. Write findings to `i18n-audit-report.md` in the repo root. If the file already exists, replace the "Tech Stack & Configuration" and "Scope Assessment" sections while preserving other sections.
 
 ```dot
 digraph scope {
@@ -158,7 +158,7 @@ Produce a quantitative summary:
 
 ### Phase 7: Write to Report
 
-Create or update `l10n-audit-report.md` with:
+Create or update `i18n-audit-report.md` with:
 
 1. **Tech Stack & Configuration** section (from Phase 1)
 2. **Scope Assessment** section containing:
@@ -181,7 +181,7 @@ If this is the first skill to run, create the full report skeleton with placehol
 | 4. Hardcoded | Scan for string literals in UI code | String inventory |
 | 5. Categorize | Group by type, location, confidence | Categorized inventory |
 | 6. Metrics | Count, rank, break down | Quantitative summary |
-| 7. Report | Write to l10n-audit-report.md | Committed report section |
+| 7. Report | Write to i18n-audit-report.md | Committed report section |
 
 ## Common Mistakes
 

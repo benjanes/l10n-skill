@@ -1,13 +1,13 @@
 ---
-name: auditing-l10n-terminology
+name: auditing-i18n-terminology
 description: Use when auditing vocabulary consistency before localization — finds synonyms used for the same concept, ambiguous terms, and builds a proto-glossary for translators
 ---
 
-# Auditing L10n Terminology
+# Auditing I18n Terminology
 
 Ensure a codebase's user-facing vocabulary is consistent — same concepts use the same words, labels are contextually distinct, and ambiguous terms are identified for translator guidance. Inconsistent terminology multiplies translation costs and confuses users.
 
-**Announce at start:** "I'm using the auditing-l10n-terminology skill to analyze vocabulary consistency across this codebase's copy."
+**Announce at start:** "I'm using the auditing-i18n-terminology skill to analyze vocabulary consistency across this codebase's copy."
 
 ## When to Use
 
@@ -16,11 +16,11 @@ Ensure a codebase's user-facing vocabulary is consistent — same concepts use t
 - Building a glossary for translators
 - Identifying ambiguous terms that need context notes for translation
 
-**Do not use for:** Scope assessment (use auditing-l10n-scope), structural issues (use auditing-l10n-readiness), or tone analysis (use auditing-l10n-tone).
+**Do not use for:** Scope assessment (use auditing-i18n-scope), structural issues (use auditing-i18n-readiness), or tone analysis (use auditing-i18n-tone).
 
 ## Process
 
-Follow these phases in order. Write findings to the "Terminology Consistency" section of `l10n-audit-report.md`. If the file already exists, replace the "Terminology Consistency" section while preserving other sections. If the file does not exist, create the full report skeleton first, then populate your section.
+Follow these phases in order. Write findings to the "Terminology Consistency" section of `i18n-audit-report.md`. If the file already exists, replace the "Terminology Consistency" section while preserving other sections. If the file does not exist, create the full report skeleton first, then populate your section.
 
 ```dot
 digraph terminology {
@@ -34,7 +34,7 @@ digraph terminology {
 
 ### Phase 1: Load Context
 
-- Read scope output from `l10n-audit-report.md` for the string inventory and tech stack
+- Read scope output from `i18n-audit-report.md` for the string inventory and tech stack
 - If scope hasn't run, perform lightweight discovery — scan dependency files (package.json, Podfile, build.gradle) to detect the tech stack, then sample up to 20 UI-rendering files to build a working string inventory. This is not a complete inventory — just enough to proceed with terminology analysis.
 - Note the app's domain (e.g., e-commerce, SaaS, social, finance) — domain shapes what terms matter most
 
@@ -138,7 +138,7 @@ Include context notes for every term that is:
 
 ### Phase 6: Write to Report
 
-Append the "Terminology Consistency" section to `l10n-audit-report.md`:
+Append the "Terminology Consistency" section to `i18n-audit-report.md`:
 
 1. **Summary:** Number of inconsistencies found, clusters analyzed, glossary size
 2. **Inconsistencies table:**

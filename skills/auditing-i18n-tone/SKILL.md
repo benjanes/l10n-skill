@@ -1,13 +1,13 @@
 ---
-name: auditing-l10n-tone
+name: auditing-i18n-tone
 description: Use when auditing copy for brand and tone consistency before localization — identifies voice deviations, cultural risks, and style guide mismatches across user-facing strings
 ---
 
-# Auditing L10n Tone
+# Auditing I18n Tone
 
 Assess whether a codebase's user-facing copy is consistent in tone and aligned with brand guidelines. Inconsistent tone creates translation problems — translators need a stable source voice to produce a coherent target voice.
 
-**Announce at start:** "I'm using the auditing-l10n-tone skill to analyze brand and tone consistency across this codebase's copy."
+**Announce at start:** "I'm using the auditing-i18n-tone skill to analyze brand and tone consistency across this codebase's copy."
 
 ## When to Use
 
@@ -16,25 +16,25 @@ Assess whether a codebase's user-facing copy is consistent in tone and aligned w
 - Identifying copy that will be problematic to translate (idioms, humor, culture-specific references)
 - Assessing whether the app's "voice" is stable enough to localize coherently
 
-**Do not use for:** Scope assessment (use auditing-l10n-scope), structural issues (use auditing-l10n-readiness), or vocabulary consistency (use auditing-l10n-terminology).
+**Do not use for:** Scope assessment (use auditing-i18n-scope), structural issues (use auditing-i18n-readiness), or vocabulary consistency (use auditing-i18n-terminology).
 
 ## Process
 
-Follow these phases in order. Write findings to the "Tone & Brand Analysis" section of `l10n-audit-report.md`. If the file already exists, replace the "Tone & Brand Analysis" section while preserving other sections. If the file does not exist, create the full report skeleton first, then populate your section.
+Follow these phases in order. Write findings to the "Tone & Brand Analysis" section of `i18n-audit-report.md`. If the file already exists, replace the "Tone & Brand Analysis" section while preserving other sections. If the file does not exist, create the full report skeleton first, then populate your section.
 
 ```dot
 digraph tone {
     "Phase 1:\nLoad Context" -> "Phase 2:\nEstablish Baseline Tone";
     "Phase 2:\nEstablish Baseline Tone" -> "Phase 3:\nDetect Deviations";
     "Phase 3:\nDetect Deviations" -> "Phase 4:\nBrand Guideline\nComparison";
-    "Phase 4:\nBrand Guideline\nComparison" -> "Phase 5:\nIdentify L10n Risks";
-    "Phase 5:\nIdentify L10n Risks" -> "Phase 6:\nWrite to Report";
+    "Phase 4:\nBrand Guideline\nComparison" -> "Phase 5:\nIdentify I18n Risks";
+    "Phase 5:\nIdentify I18n Risks" -> "Phase 6:\nWrite to Report";
 }
 ```
 
 ### Phase 1: Load Context
 
-- Read scope output from `l10n-audit-report.md` for the string inventory and tech stack
+- Read scope output from `i18n-audit-report.md` for the string inventory and tech stack
 - If scope hasn't run, perform lightweight discovery — scan dependency files (package.json, Podfile, build.gradle) to detect the tech stack, then sample up to 20 UI-rendering files to build a working string inventory. This is not a complete inventory — just enough to proceed with tone analysis.
 - Search for brand/style guide documents in the repo:
   - `STYLE_GUIDE.md`, `WRITING_GUIDE.md`, `CONTENT_GUIDE.md`
@@ -121,7 +121,7 @@ For each risk item, suggest a neutral alternative that conveys the same meaning 
 
 ### Phase 6: Write to Report
 
-Append the "Tone & Brand Analysis" section to `l10n-audit-report.md`:
+Append the "Tone & Brand Analysis" section to `i18n-audit-report.md`:
 
 1. **Baseline tone profile:** The four-dimension summary with examples
 2. **Brand guideline alignment:** Match/mismatch summary (or note that no guidelines exist)
@@ -145,7 +145,7 @@ Append the "Tone & Brand Analysis" section to `l10n-audit-report.md`:
 | 2. Baseline | Cross-section of strings | Four-dimension tone profile |
 | 3. Deviations | All strings vs baseline | Deviation table with severity |
 | 4. Brand guidelines | De facto vs documented voice | Alignment assessment |
-| 5. L10n risks | Humor, idioms, culture refs | Risk items with alternatives |
+| 5. I18n risks | Humor, idioms, culture refs | Risk items with alternatives |
 | 6. Report | All findings | Tone & Brand Analysis section |
 
 ## Common Mistakes

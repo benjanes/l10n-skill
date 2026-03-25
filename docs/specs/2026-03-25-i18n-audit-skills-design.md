@@ -16,45 +16,45 @@ Four Claude Code skills that guide an agent through a structured localization au
 
 | Skill | Purpose | Runs after |
 |-------|---------|------------|
-| `auditing-l10n-scope` | Discover hardcoded copy, detect already-localized strings, assess scale | (first) |
-| `auditing-l10n-readiness` | Identify structural blockers for localization | scope |
-| `auditing-l10n-tone` | Assess brand/tone consistency and cultural risks | scope |
-| `auditing-l10n-terminology` | Ensure vocabulary consistency, build proto-glossary | scope |
+| `auditing-i18n-scope` | Discover hardcoded copy, detect already-localized strings, assess scale | (first) |
+| `auditing-i18n-readiness` | Identify structural blockers for localization | scope |
+| `auditing-i18n-tone` | Assess brand/tone consistency and cultural risks | scope |
+| `auditing-i18n-terminology` | Ensure vocabulary consistency, build proto-glossary | scope |
 
 ### Dependency Model
 
 ```
-auditing-l10n-scope (produces string inventory + tech stack context)
+auditing-i18n-scope (produces string inventory + tech stack context)
        │
        ▼
-auditing-l10n-readiness  ┐
-auditing-l10n-tone       ├── consume scope output, run in any order
-auditing-l10n-terminology┘
+auditing-i18n-readiness  ┐
+auditing-i18n-tone       ├── consume scope output, run in any order
+auditing-i18n-terminology┘
 ```
 
 The scope skill is a soft dependency. If a downstream skill runs without scope output, it performs lightweight string discovery on its own rather than failing.
 
 ### Shared Report
 
-All skills append to `l10n-audit-report.md` in the target repo root:
+All skills append to `i18n-audit-report.md` in the target repo root:
 
 ```markdown
 # Localization Audit Report
 
 ## Tech Stack & Configuration
-<!-- auditing-l10n-scope -->
+<!-- auditing-i18n-scope -->
 
 ## 1. Scope Assessment
-<!-- auditing-l10n-scope -->
+<!-- auditing-i18n-scope -->
 
 ## 2. Readiness Issues
-<!-- auditing-l10n-readiness -->
+<!-- auditing-i18n-readiness -->
 
 ## 3. Tone & Brand Analysis
-<!-- auditing-l10n-tone -->
+<!-- auditing-i18n-tone -->
 
 ## 4. Terminology Consistency
-<!-- auditing-l10n-terminology -->
+<!-- auditing-i18n-terminology -->
 
 ## 5. Recommended Next Steps
 <!-- each skill contributes -->
@@ -76,21 +76,21 @@ Personal skills in `~/.claude/skills/`:
 
 ```
 ~/.claude/skills/
-  auditing-l10n-scope/SKILL.md
-  auditing-l10n-readiness/SKILL.md
-  auditing-l10n-tone/SKILL.md
-  auditing-l10n-terminology/SKILL.md
+  auditing-i18n-scope/SKILL.md
+  auditing-i18n-readiness/SKILL.md
+  auditing-i18n-tone/SKILL.md
+  auditing-i18n-terminology/SKILL.md
 ```
 
 ---
 
-## Skill 1: `auditing-l10n-scope`
+## Skill 1: `auditing-i18n-scope`
 
 ### Frontmatter
 
 ```yaml
 ---
-name: auditing-l10n-scope
+name: auditing-i18n-scope
 description: Use when preparing a codebase for localization, beginning an i18n initiative, or assessing the scale of hardcoded copy before string extraction
 ---
 ```
@@ -175,13 +175,13 @@ description: Use when preparing a codebase for localization, beginning an i18n i
 
 ---
 
-## Skill 2: `auditing-l10n-readiness`
+## Skill 2: `auditing-i18n-readiness`
 
 ### Frontmatter
 
 ```yaml
 ---
-name: auditing-l10n-readiness
+name: auditing-i18n-readiness
 description: Use when assessing localization blockers — structural issues like string concatenation, naive pluralization, hardcoded formatting, or missing translator context that must be fixed before string extraction
 ---
 ```
@@ -189,7 +189,7 @@ description: Use when assessing localization blockers — structural issues like
 ### Process
 
 **Phase 1: Load context**
-- Read scope output from `l10n-audit-report.md` (tech stack, string inventory)
+- Read scope output from `i18n-audit-report.md` (tech stack, string inventory)
 - If scope hasn't run, perform lightweight string discovery
 
 **Phase 2: Analyze string construction**
@@ -233,13 +233,13 @@ description: Use when assessing localization blockers — structural issues like
 
 ---
 
-## Skill 3: `auditing-l10n-tone`
+## Skill 3: `auditing-i18n-tone`
 
 ### Frontmatter
 
 ```yaml
 ---
-name: auditing-l10n-tone
+name: auditing-i18n-tone
 description: Use when auditing copy for brand and tone consistency before localization — identifies voice deviations, cultural risks, and style guide mismatches across user-facing strings
 ---
 ```
@@ -287,13 +287,13 @@ description: Use when auditing copy for brand and tone consistency before locali
 
 ---
 
-## Skill 4: `auditing-l10n-terminology`
+## Skill 4: `auditing-i18n-terminology`
 
 ### Frontmatter
 
 ```yaml
 ---
-name: auditing-l10n-terminology
+name: auditing-i18n-terminology
 description: Use when auditing vocabulary consistency before localization — finds synonyms used for the same concept, ambiguous terms, and builds a proto-glossary for translators
 ---
 ```

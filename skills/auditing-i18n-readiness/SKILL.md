@@ -1,13 +1,13 @@
 ---
-name: auditing-l10n-readiness
+name: auditing-i18n-readiness
 description: Use when assessing localization blockers — structural issues like string concatenation, naive pluralization, hardcoded formatting, or missing translator context that must be fixed before string extraction
 ---
 
-# Auditing L10n Readiness
+# Auditing I18n Readiness
 
 Identify structural and technical issues in a codebase that will block or complicate localization. These are problems that must be remediated before string extraction can proceed cleanly.
 
-**Announce at start:** "I'm using the auditing-l10n-readiness skill to identify localization blockers in this codebase."
+**Announce at start:** "I'm using the auditing-i18n-readiness skill to identify localization blockers in this codebase."
 
 ## When to Use
 
@@ -16,11 +16,11 @@ Identify structural and technical issues in a codebase that will block or compli
 - Finding non-code localizable content (images with text, CSS content, a11y attributes)
 - Evaluating whether translators will have enough context for ambiguous strings
 
-**Do not use for:** Discovering the scope of hardcoded copy (use auditing-l10n-scope), analyzing tone (use auditing-l10n-tone), or checking terminology consistency (use auditing-l10n-terminology).
+**Do not use for:** Discovering the scope of hardcoded copy (use auditing-i18n-scope), analyzing tone (use auditing-i18n-tone), or checking terminology consistency (use auditing-i18n-terminology).
 
 ## Process
 
-Follow these phases in order. Write findings to the "Readiness Issues" section of `l10n-audit-report.md`. If the file already exists, replace the "Readiness Issues" section while preserving other sections. If the file does not exist, create the full report skeleton first, then populate your section. If the scope skill has already run, consume its tech stack and string inventory. If not, perform a lightweight discovery pass first.
+Follow these phases in order. Write findings to the "Readiness Issues" section of `i18n-audit-report.md`. If the file already exists, replace the "Readiness Issues" section while preserving other sections. If the file does not exist, create the full report skeleton first, then populate your section. If the scope skill has already run, consume its tech stack and string inventory. If not, perform a lightweight discovery pass first.
 
 ```dot
 digraph readiness {
@@ -35,7 +35,7 @@ digraph readiness {
 
 ### Phase 1: Load Context
 
-- Check if `l10n-audit-report.md` exists with scope data
+- Check if `i18n-audit-report.md` exists with scope data
 - If yes: read tech stack and string inventory from the report
 - If no: perform lightweight discovery — scan dependency files (package.json, Podfile, build.gradle) to detect the tech stack, then sample up to 20 UI-rendering files for string patterns. This is not a complete inventory — just enough context to proceed with readiness analysis.
 
@@ -155,7 +155,7 @@ Evaluate whether translators will be able to produce good translations from extr
 
 ### Phase 7: Write to Report
 
-Append the "Readiness Issues" section to `l10n-audit-report.md`:
+Append the "Readiness Issues" section to `i18n-audit-report.md`:
 
 1. **Summary:** Total issues found, breakdown by severity (blockers / warnings / info)
 2. **Issues table:** For each issue category:
