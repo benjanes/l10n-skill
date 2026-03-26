@@ -52,10 +52,16 @@ Some string construction is **so tangled** (multi-line assembly, conditional log
 
 ## Scope Constraint
 
-The user may specify directories or paths to analyze (e.g., `apps/web/src/`, `packages/components/`). If provided, constrain all scanning and analysis to those paths. If no paths are specified, analyze the entire repository (excluding test files, build output, node_modules, and other non-source directories).
+When invoked as a command, arguments are treated as paths to analyze:
+
+```
+/auditing-i18n-string-patterns apps/web/src packages/components/src
+```
+
+If no paths are provided, analyze the entire repository (excluding test files, build output, node_modules, and other non-source directories).
 
 Note the analyzed paths in the report header so readers know the audit's scope:
-- **Scope:** `apps/web/src/`, `packages/*/src/` — or —
+- **Scope:** `apps/web/src/`, `packages/components/src/` — or —
 - **Scope:** Entire repository
 
 ## Process

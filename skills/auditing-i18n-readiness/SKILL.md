@@ -23,7 +23,13 @@ Orchestrate a comprehensive i18n readiness audit by invoking the analysis skills
 
 ## Scope Constraint
 
-The user may specify directories or paths to analyze (e.g., `apps/web/src/`, `packages/components/`). If provided, pass this constraint to all invoked analysis skills so they limit scanning to those paths.
+When invoked as a command, arguments are treated as paths to analyze:
+
+```
+/auditing-i18n-readiness apps/web/src packages/components/src
+```
+
+If paths are provided, pass them to all invoked analysis skills so they limit scanning to those paths. If no paths are provided, all skills analyze the entire repository.
 
 ## Analysis Skills
 
