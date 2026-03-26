@@ -249,8 +249,22 @@ const message = greeting + ", " + userName;  // Can't reorder
 ```
 Find: variables holding partial sentences that get assembled elsewhere.
 
+**Category/select switching:**
+```
+// PROBLEM: conditional rendering based on gender, role, status, etc.
+{user.role === 'admin' ? 'Administrator' : user.role === 'editor' ? 'Editor' : 'Viewer'}
+
+// Extraction converts to ICU select:
+// t('user.roleLabel', { role }) → "{role, select, admin {Administrator} editor {Editor} other {Viewer}}"
+
+// Gender example:
+{gender === 'male' ? 'He updated his profile' : gender === 'female' ? 'She updated her profile' : 'They updated their profile'}
+// → "{gender, select, male {He updated his profile} female {She updated her profile} other {They updated their profile}}"
+```
+Find: switch statements, chained ternaries, or if/else chains that select between text variants based on a category value (not a count — count-based switching is pluralization). Look for conditionals on variables like `gender`, `role`, `status`, `type`, `kind`.
+
 For each pattern found, record:
-- The **technique** (concatenation, template literal, ternary switch, fragment assembly)
+- The **technique** (concatenation, template literal, ternary switch, fragment assembly, category select)
 - **Location** (file, line)
 - **Example** (the actual code)
 - **Conversion note** (how extraction should handle it — separate messages, ICU placeholders, etc.)
@@ -266,6 +280,7 @@ How does the app handle plural forms today? **All pluralization findings go in `
 | Custom `pluralize()` utility | English-only. Check for exceptions map with irregular plurals. | Delete utility. Use ICU plural at each call site. Preserve irregular forms from exceptions map. |
 | `if (count === 0) ... else if (count === 1) ... else ...` | Handles zero/one/other but misses many languages. | `{count, plural, zero {...} one {...} other {...}}` |
 | Verb conjugation tied to count (`has/have`, `is/are`) | Both noun and verb must be inside the plural block. | `{count, plural, one {# row has} other {# rows have}}` |
+| Count variable adjacent to noun without branching (`"Archive {count} chats"`, `` `${count} items in cart` ``) | Code doesn't branch but the noun is inherently plural-sensitive. Easy to miss because there's no conditional. | `{count, plural, one {Archive # chat} other {Archive # chats}}` |
 | Using `Intl.PluralRules` or equivalent | Language-aware — good existing pattern. | May already be compatible with i18n library. |
 | Using i18n library pluralization (ICU `{count, plural, ...}`) | Already correct. | No change needed. |
 
@@ -379,6 +394,7 @@ Create or replace with the full pattern catalog:
 Pattern types to catalog (as applicable):
 - Template literal sentences
 - Ternary text switching (including mid-sentence word switches)
+- Category/select switching (gender, role, status, type)
 - Sentence fragment assembly
 - Pluralization utility functions and their call sites
 - Ternary plural expressions
@@ -389,7 +405,9 @@ Pattern types to catalog (as applicable):
 - CSS content strings
 - SVG text elements
 
-3. **Cross-cutting gotchas:** Patterns that span multiple technique types or require special attention
+3. **Cross-cutting gotchas:** Patterns that span multiple technique types or require special attention. Always include:
+   - **Wiring interpolation values through:** Every `{placeholder}` in a catalog entry must have a corresponding values argument at the call site. This is especially easy to miss when i18n keys are stored as data (config objects, arrays, preference definitions) rather than called inline — the data structure needs a field for interpolation values, and the renderer must forward them. Flag any patterns where keys-as-data are likely.
+   - **ICU escaping:** Literal curly braces in text must be escaped with single quotes (`'{'` and `'}'`). A literal single quote is `''`. Flag any strings containing literal braces that will need escaping after extraction.
 4. **Translator context notes:** Ambiguous strings, product names, variable context
 5. **Recommended Next Steps** with extraction guidance, suggested ordering, and pointers to key patterns
 
