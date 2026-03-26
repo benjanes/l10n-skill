@@ -50,6 +50,14 @@ Some string construction is **so tangled** (multi-line assembly, conditional log
 
 **Do not use for:** Analyzing tone (use auditing-i18n-tone), checking terminology consistency (use auditing-i18n-terminology), or running a full readiness audit (use auditing-i18n-readiness, which orchestrates all skills including this one).
 
+## Scope Constraint
+
+The user may specify directories or paths to analyze (e.g., `apps/web/src/`, `packages/components/`). If provided, constrain all scanning and analysis to those paths. If no paths are specified, analyze the entire repository (excluding test files, build output, node_modules, and other non-source directories).
+
+Note the analyzed paths in the report header so readers know the audit's scope:
+- **Scope:** `apps/web/src/`, `packages/*/src/` — or —
+- **Scope:** Entire repository
+
 ## Process
 
 Follow these phases in order. Write scope metrics and pre-extraction fixes to `i18n-pre-extraction-fixes.md` and extraction patterns to `i18n-extraction-pattern-catalog.md`. Create either file if it does not exist.

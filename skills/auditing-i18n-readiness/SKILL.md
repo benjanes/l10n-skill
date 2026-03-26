@@ -21,6 +21,10 @@ Orchestrate a comprehensive i18n readiness audit by invoking the analysis skills
 - Tone only → `auditing-i18n-tone`
 - Terminology only → `auditing-i18n-terminology`
 
+## Scope Constraint
+
+The user may specify directories or paths to analyze (e.g., `apps/web/src/`, `packages/components/`). If provided, pass this constraint to all invoked analysis skills so they limit scanning to those paths.
+
 ## Analysis Skills
 
 | Skill | Purpose | Writes to |

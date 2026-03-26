@@ -20,6 +20,12 @@ Tone fixes are **pre-extraction work** — source copy should be consistent and 
 
 **Do not use for:** Scope/string pattern assessment (use auditing-i18n-string-patterns), vocabulary consistency (use auditing-i18n-terminology), or full readiness audit (use auditing-i18n-readiness).
 
+## Scope Constraint
+
+The user may specify directories or paths to analyze (e.g., `apps/web/src/`, `packages/components/`). If provided, constrain all scanning and analysis to those paths. If no paths are specified, analyze the entire repository (excluding test files, build output, node_modules, and other non-source directories).
+
+Note the analyzed paths in the report header so readers know the audit's scope.
+
 ## Process
 
 Follow these phases in order. Write findings to the "Tone & Brand Analysis" section of `i18n-pre-extraction-fixes.md`. If the file already exists, replace the "Tone & Brand Analysis" section while preserving other sections. If the file does not exist, create it with a report skeleton first, then populate your section.
