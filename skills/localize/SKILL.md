@@ -11,7 +11,7 @@ Replace hardcoded user-facing strings in source files with keys that reference a
 
 1. **Analyze** — ensure string patterns have been cataloged (run auditing-i18n-string-patterns if needed)
 2. **Generate hierarchical keys** based on the file path and component/function context
-3. **Replace** each string in the source code with the appropriate localization function call
+3. **Replace** each string in the source code with the appropriate translation function call
 4. **Write** the extracted strings into a JSON catalog file
 
 ## Prerequisite: String pattern analysis
@@ -49,7 +49,7 @@ Use **hierarchical dot-notation** keys derived from the file path and semantic c
 - Use a descriptive suffix for the specific element (`title`, `description`, `placeholder`, `errorMessage`, `label`, `tooltip`, `altText`)
 - Use camelCase for each segment
 - Keep keys concise but unambiguous — if two components could collide, add more specificity
-- If the repo already has localization keys, match the existing naming convention instead
+- If the repo already has translation keys, match the existing naming convention instead
 
 ### Monorepo key naming
 
